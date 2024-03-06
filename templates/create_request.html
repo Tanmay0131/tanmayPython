@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create a Request</title>
+</head>
+<body>
+    <h1>Create a Request</h1>
+    <form action="/submit_request" method="POST">
+        <label for="lab_id">Lab:</label>
+        <select id="lab_id" name="lab_id">
+            {% for lab in labs %}
+                <option value="{{ lab.Id }}">{{ lab.display_name }}</option>
+            {% endfor %}
+        </select><br><br>
+
+        <label for="requested_date">Requested Date:</label>
+        <input type="date" id="requested_date" name="requested_date"><br><br>
+
+        <label for="description">Description:</label>
+        <textarea id="description" name="description" rows="4" cols="50"></textarea><br><br>
+
+        <label for="unit_price">Unit Price:</label>
+        <input type="text" id="unit_price" name="unit_price"><br><br>
+
+        <label for="quantity">Quantity:</label>
+        <input type="text" id="quantity" name="quantity"><br><br>
+
+        <label for="oac_recommended_date">OAC Recommended Date:</label>
+        <input type="date" id="oac_recommended_date" name="oac_recommended_date"><br><br>
+
+        <label for="request_type_id">Request Type:</label>
+        <select id="request_type_id" name="request_type_id">
+            {% for request_type in request_types %}
+                <option value="{{ request_type.Id }}">{{ request_type.Display }}</option>
+            {% endfor %}
+        </select><br><br>
+
+        <label for="additional_notes">Additional Notes:</label>
+        <textarea id="additional_notes" name="additional_notes" rows="4" cols="50"></textarea><br><br>
+
+        <input type="submit" value="Submit">
+    </form>
+
+    <script>
+        // JavaScript to redirect to the teacher_dashboard route after form submission
+        document.querySelector('form').addEventListener('submit', function() {
+            window.location.href = '/teacher_dashboard.html'; // Redirects to teacher_dashboard route
+        });
+    </script>
+
+</body>
+</html>

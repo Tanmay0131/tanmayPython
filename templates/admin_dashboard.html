@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Dashboard</title>
+</head>
+<body>
+    <h1>Admin Dashboard</h1>
+    <div id="userDetails">
+        {% if user %}
+            <p><strong>Name:</strong> {{ user['name'] }}</p>
+            <p><strong>Email:</strong> {{ user['email'] }}</p>
+            <p><strong>Role:</strong> {{ user['role'] }}</p>
+            <p><a href="{{ url_for('teacher_dashboard') }}">Go to Teacher Dashboard</a></p>
+        {% else %}
+            <p>User details not found</p>
+        {% endif %}
+    </div>
+
+    <div id="requestList">
+        <h2>Requests</h2>
+        {% for request in requests %}
+            <div class="request">
+                <p><strong>Requested By:</strong> {{ request['name'] }}</p>
+                <p><strong>Requested Date:</strong> {{ request['Requested_Date'] }}</p>
+                <p><strong>Description:</strong> {{ request['Description'] }}</p>
+                <p><strong>Unit Price:</strong> {{ request['Unit_Price'] }}</p>
+                <p><strong>Quantity:</strong> {{ request['Quantity'] }}</p>
+                <p><strong>Request Type:</strong> {{ request['Request_Type'] }}</p>
+                <p><strong>State:</strong> {{ request['State'] }}</p>
+                
+                <form action="{{ url_for('process_request', request_id=request['Id']) }}" method="post">
+                    <label for="action">Action:</label>
+                    <select name="action" id="action">
+                        <option value="approve">Approve with comments</option>
+                        <option value="deny">Deny with reason</option>
+                        <option value="return">Return to teacher and ask for more details</option>
+                    </select>
+                    <label for="comments">Comments:</label>
+                    <textarea name="comments" id="comments" rows="3"></textarea>
+                    <input type="submit" value="Submit">
+                </form>
+
+                
+
+
+            </div>
+            <hr>
+        {% endfor %}
+    </div>
+
+    <a href="{{ url_for('completed_requests_table') }}">
+        <button>View Completed Requests</button>
+    </a>
+
+    <br>
+
+    <a href="{{ url_for('logout') }}">Logout</a>
+
+
+</body>
+</html>
