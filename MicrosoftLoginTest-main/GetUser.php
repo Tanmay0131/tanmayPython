@@ -18,7 +18,7 @@ try {
     $authorizationCode = $_SESSION['authcode'];
  
     $tenantId = 'e34fd78b-f48d-4235-9787-fef76723be14';
-    $redirectUri = 'http://localhost/MicrosoftLoginTest-main/handle.php';
+    $redirectUri = 'http://localhost:5000/MicrosoftLoginTest-main/handle.php';
  
     // The auth provider will only authorize requests to
     // the allowed hosts, in this case Microsoft Graph
