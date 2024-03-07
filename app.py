@@ -64,7 +64,7 @@ redirect_uri = 'http://localhost:5000/callback' """
  """
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    return redirect("login.php")
+    return render_template('teacher_dashboard.html')
 
 
 #http://localhost:5000/callback'
